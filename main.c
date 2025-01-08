@@ -1,19 +1,17 @@
-#include "app_sdl.h"
+#include "engine.h"
+#include "app.h"
 
-int main(int argc, char* args[])
+int main(int argc, char* argv[])
 {
-    // Initiera applikationen
-    if (!app_init())
-    {
-        app_quit();
-        return 1;
+    Engine* engine = createEngine();
+
+    if (!initEngine(engine, "Painter", 800, 600)) {
+        destroyEngine(engine);
+        return -1;
     }
 
-    // Kör huvudloopen
-    app_loop();
+    runApp(engine);
 
-    // Stäng applikationen
-    app_quit();
-
+    destroyEngine(engine);
     return 0;
 }

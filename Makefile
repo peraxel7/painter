@@ -1,29 +1,20 @@
-# Kompilator
 CC = gcc
-
-# Kompilatorflaggor
-CFLAGS =
-
-# Länkningsflaggor
+CFLAGS = -Wall -Wextra -I.
 LDFLAGS = -lSDL2 -lSDL2_ttf
 
-# Målet namn
-TARGET = SDLApp
+SRCS = main.c engine.c app.c widget.c button.c menu.c menubar.c submenu.c
+OBJS = $(SRCS:.c=.o)
+TARGET = sdl_app
 
-# Källkodsfil
-SRC = main.c app_sdl.c engine_sdl.c font_sdl.c
+.PHONY: all clean
 
-# Skapa objektfiler
-OBJ = $(SRC:.c=.o)
-
-# Regler
 all: $(TARGET)
 
-$(TARGET): $(OBJ)
+$(TARGET): $(OBJS)
 	$(CC) -o $@ $^ $(LDFLAGS)
 
 %.o: %.c
-	$(CC) -c -o $@ $< $(CFLAGS)
+	$(CC) $(CFLAGS) -c $< -o $@
 
 clean:
-	rm -f $(OBJ) $(TARGET)
+	rm -f $(OBJS) $(TARGET)
