@@ -1,0 +1,6 @@
+{
+    "name": "meteor",
+    "files": [ { 
+    	"filters": ["*.*", "Makefile", ".kateproject"] 
+    	} ]
+}
