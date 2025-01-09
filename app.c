@@ -7,12 +7,6 @@
 
 void runApp(Engine* engine)
 {
-    if (TTF_Init() == -1)
-    {
-        printf("SDL_ttf kunde inte initialiseras: %s\n", TTF_GetError());
-        return;
-    }
-
     MenuBar* menuBar = createMenuBar();
 
     while (engine->running)

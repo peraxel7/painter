@@ -44,6 +44,14 @@ int initEngine(Engine* engine, const char* title, int width, int height)
         return 0;
     }
 
+    engine->globalFont = TTF_OpenFont("Arial.ttf", 24); // Anpassa sökvägen och storleken
+    if (!engine->globalFont)
+    {
+        SDL_Log("Failed to load font: %s", TTF_GetError());
+        destroyEngine(engine);
+        return 0;
+    }
+
     engine->running = 1;
     return 1;
 }
@@ -75,6 +83,10 @@ void renderEngine(Engine* engine)
 
 void cleanEngine(Engine* engine)
 {
+    if (engine->globalFont)
+    {
+        TTF_CloseFont(engine->globalFont);
+    }
     if (engine->renderer)
     {
         SDL_DestroyRenderer(engine->renderer);

@@ -8,6 +8,7 @@ typedef struct Engine
     int running;
     SDL_Window* window;
     SDL_Renderer* renderer;
+    TTF_Font *globalFont;
 } Engine;
 
 Engine* createEngine();
